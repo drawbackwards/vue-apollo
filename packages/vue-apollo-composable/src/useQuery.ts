@@ -4,8 +4,6 @@ import {
   isRef,
   computed,
   watch,
-  // @ts-expect-error
-  onServerPrefetch,
   getCurrentInstance,
   onBeforeUnmount,
   nextTick,
@@ -31,6 +29,10 @@ import { useEventHook } from './util/useEventHook'
 import { trackQuery } from './util/loadingTracking'
 
 import type { CurrentInstance } from './util/types'
+
+// fix issue https://github.com/vuejs/vue-apollo/issues/1102
+import * as VueDemi from 'vue-demi'
+const onServerPrefetch = VueDemi.onServerPrefetch
 
 export interface UseQueryOptions<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
